@@ -31,6 +31,9 @@ async def areyouup(interaction: discord.Interaction):
     
 @tree.command(name = "reminder", description = "Reminds the user of something after a set amount of time", guild = discord.Object(id = 1065734665333375027))
 async def reminder(interaction: discord.Interaction, reminder: str, time: float):
+    if (time <= 0):
+        await interaction.response.send_message("ERROR: Please enter a postive value.", ephemeral = True)
+        return
     await interaction.response.send_message("Executing...", ephemeral = True)
     # Get the current timestamp 
     current_timestamp = datetime.utcnow().timestamp()
